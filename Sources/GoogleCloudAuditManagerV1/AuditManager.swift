@@ -49,7 +49,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_EnrollResource")
   public func enrollResource(
     request: EnrollResourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.Enrollment {
+  ) async throws -> GoogleCloudAuditManagerV1.Enrollment {
     try await self.inner.enrollResource(request: request, options: options)
   }
 
@@ -60,7 +60,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_GenerateAuditScopeReport")
   public func generateAuditScopeReport(
     request: GenerateAuditScopeReportRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport {
+  ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
     try await self.inner.generateAuditScopeReport(request: request, options: options)
   }
 
@@ -134,7 +134,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListAuditReports")
   public func listAuditReports(
     request: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse {
+  ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse {
     try await self.inner.listAuditReports(request: request, options: options)
   }
 
@@ -145,7 +145,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     byItem: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<AuditReport, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse in
+      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listAuditReports(request: request, options: options)
@@ -158,7 +158,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_GetAuditReport")
   public func getAuditReport(
     request: GetAuditReportRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.AuditReport {
+  ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
     try await self.inner.getAuditReport(request: request, options: options)
   }
 
@@ -167,7 +167,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_GetResourceEnrollmentStatus")
   public func getResourceEnrollmentStatus(
     request: GetResourceEnrollmentStatusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus {
+  ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
     try await self.inner.getResourceEnrollmentStatus(request: request, options: options)
   }
 
@@ -176,7 +176,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
   public func listResourceEnrollmentStatuses(
     request: ListResourceEnrollmentStatusesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse {
+  ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse {
     try await self.inner.listResourceEnrollmentStatuses(request: request, options: options)
   }
 
@@ -188,7 +188,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse in
+        -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listResourceEnrollmentStatuses(request: request, options: options)
@@ -201,7 +201,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListControls")
   public func listControls(
     request: ListControlsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse {
+  ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse {
     try await self.inner.listControls(request: request, options: options)
   }
 
@@ -212,7 +212,7 @@ public class AuditManagerClient: Clients.AuditManagerProtocol {
     byItem: ListControlsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Control, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse in
+      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listControls(request: request, options: options)
@@ -338,24 +338,24 @@ extension Clients {
   public protocol AuditManagerProtocol {
     /// See `AuditManagerClient.enrollResource`.
     func enrollResource(request: EnrollResourceRequest) async throws
-      -> GoogleCloudAuditmanagerV1.Enrollment
+      -> GoogleCloudAuditManagerV1.Enrollment
 
     /// See `AuditManagerClient.enrollResource`.
     func enrollResource(
       scope: Swift.String,
       destinations: [EnrollResourceRequest.EligibleDestination],
-    ) async throws -> GoogleCloudAuditmanagerV1.Enrollment
+    ) async throws -> GoogleCloudAuditManagerV1.Enrollment
 
     /// See `AuditManagerClient.generateAuditScopeReport`.
     func generateAuditScopeReport(request: GenerateAuditScopeReportRequest) async throws
-      -> GoogleCloudAuditmanagerV1.AuditScopeReport
+      -> GoogleCloudAuditManagerV1.AuditScopeReport
 
     /// See `AuditManagerClient.generateAuditScopeReport`.
     func generateAuditScopeReport(
       scope: Swift.String,
       complianceStandard: Swift.String,
       reportFormat: GenerateAuditScopeReportRequest.AuditScopeReportFormat,
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport
+    ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport
 
     /// See `AuditManagerClient.generateAuditReport`.
     func generateAuditReport(request: GenerateAuditReportRequest) async throws
@@ -375,7 +375,7 @@ extension Clients {
 
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(request: ListAuditReportsRequest) async throws
-      -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse
+      -> GoogleCloudAuditManagerV1.ListAuditReportsResponse
 
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(
@@ -389,25 +389,25 @@ extension Clients {
 
     /// See `AuditManagerClient.getAuditReport`.
     func getAuditReport(request: GetAuditReportRequest) async throws
-      -> GoogleCloudAuditmanagerV1.AuditReport
+      -> GoogleCloudAuditManagerV1.AuditReport
 
     /// See `AuditManagerClient.getAuditReport`.
     func getAuditReport(
       name: Swift.String,
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditReport
+    ) async throws -> GoogleCloudAuditManagerV1.AuditReport
 
     /// See `AuditManagerClient.getResourceEnrollmentStatus`.
     func getResourceEnrollmentStatus(request: GetResourceEnrollmentStatusRequest) async throws
-      -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus
+      -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus
 
     /// See `AuditManagerClient.getResourceEnrollmentStatus`.
     func getResourceEnrollmentStatus(
       name: Swift.String,
-    ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus
+    ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus
 
     /// See `AuditManagerClient.listResourceEnrollmentStatuses`.
     func listResourceEnrollmentStatuses(request: ListResourceEnrollmentStatusesRequest) async throws
-      -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse
+      -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse
 
     /// See `AuditManagerClient.listResourceEnrollmentStatuses`.
     func listResourceEnrollmentStatuses(
@@ -421,7 +421,7 @@ extension Clients {
 
     /// See `AuditManagerClient.listControls`.
     func listControls(request: ListControlsRequest) async throws
-      -> GoogleCloudAuditmanagerV1.ListControlsResponse
+      -> GoogleCloudAuditManagerV1.ListControlsResponse
 
     /// See `AuditManagerClient.listControls`.
     func listControls(
@@ -480,12 +480,12 @@ extension Clients {
     /// See `AuditManagerClient.enrollResource`.
     func enrollResource(
       request: EnrollResourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.Enrollment
+    ) async throws -> GoogleCloudAuditManagerV1.Enrollment
 
     /// See `AuditManagerClient.generateAuditScopeReport`.
     func generateAuditScopeReport(
       request: GenerateAuditScopeReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport
+    ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport
 
     /// See `AuditManagerClient.generateAuditReport`.
     func generateAuditReport(
@@ -500,7 +500,7 @@ extension Clients {
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(
       request: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse
+    ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse
 
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(
@@ -510,17 +510,17 @@ extension Clients {
     /// See `AuditManagerClient.getAuditReport`.
     func getAuditReport(
       request: GetAuditReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditReport
+    ) async throws -> GoogleCloudAuditManagerV1.AuditReport
 
     /// See `AuditManagerClient.getResourceEnrollmentStatus`.
     func getResourceEnrollmentStatus(
       request: GetResourceEnrollmentStatusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus
+    ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus
 
     /// See `AuditManagerClient.listResourceEnrollmentStatuses`.
     func listResourceEnrollmentStatuses(
       request: ListResourceEnrollmentStatusesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse
+    ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse
 
     /// See `AuditManagerClient.listResourceEnrollmentStatuses`.
     func listResourceEnrollmentStatuses(
@@ -530,7 +530,7 @@ extension Clients {
     /// See `AuditManagerClient.listControls`.
     func listControls(
       request: ListControlsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse
+    ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse
 
     /// See `AuditManagerClient.listControls`.
     func listControls(
@@ -577,21 +577,21 @@ extension Clients {
 // Default implementations
 extension Clients.AuditManagerProtocol {
   public func enrollResource(request: EnrollResourceRequest) async throws
-    -> GoogleCloudAuditmanagerV1.Enrollment
+    -> GoogleCloudAuditManagerV1.Enrollment
   {
     try await self.enrollResource(request: request, options: .init())
   }
 
   public func enrollResource(
     request: EnrollResourceRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.Enrollment {
+  ) async throws -> GoogleCloudAuditManagerV1.Enrollment {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func enrollResource(
     scope: Swift.String,
     destinations: [EnrollResourceRequest.EligibleDestination],
-  ) async throws -> GoogleCloudAuditmanagerV1.Enrollment {
+  ) async throws -> GoogleCloudAuditManagerV1.Enrollment {
     let request = EnrollResourceRequest().with {
       $0.scope = scope
       $0.destinations = destinations
@@ -600,14 +600,14 @@ extension Clients.AuditManagerProtocol {
   }
 
   public func generateAuditScopeReport(request: GenerateAuditScopeReportRequest) async throws
-    -> GoogleCloudAuditmanagerV1.AuditScopeReport
+    -> GoogleCloudAuditManagerV1.AuditScopeReport
   {
     try await self.generateAuditScopeReport(request: request, options: .init())
   }
 
   public func generateAuditScopeReport(
     request: GenerateAuditScopeReportRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport {
+  ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -615,7 +615,7 @@ extension Clients.AuditManagerProtocol {
     scope: Swift.String,
     complianceStandard: Swift.String,
     reportFormat: GenerateAuditScopeReportRequest.AuditScopeReportFormat,
-  ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport {
+  ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
     let request = GenerateAuditScopeReportRequest().with {
       $0.scope = scope
       $0.complianceStandard = complianceStandard
@@ -668,14 +668,14 @@ extension Clients.AuditManagerProtocol {
   }
 
   public func listAuditReports(request: ListAuditReportsRequest) async throws
-    -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse
+    -> GoogleCloudAuditManagerV1.ListAuditReportsResponse
   {
     try await self.listAuditReports(request: request, options: .init())
   }
 
   public func listAuditReports(
     request: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse {
+  ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -689,7 +689,7 @@ extension Clients.AuditManagerProtocol {
     byItem: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<AuditReport, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse in
+      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -705,20 +705,20 @@ extension Clients.AuditManagerProtocol {
   }
 
   public func getAuditReport(request: GetAuditReportRequest) async throws
-    -> GoogleCloudAuditmanagerV1.AuditReport
+    -> GoogleCloudAuditManagerV1.AuditReport
   {
     try await self.getAuditReport(request: request, options: .init())
   }
 
   public func getAuditReport(
     request: GetAuditReportRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.AuditReport {
+  ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getAuditReport(
     name: Swift.String,
-  ) async throws -> GoogleCloudAuditmanagerV1.AuditReport {
+  ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
     let request = GetAuditReportRequest().with {
       $0.name = name
     }
@@ -726,20 +726,20 @@ extension Clients.AuditManagerProtocol {
   }
 
   public func getResourceEnrollmentStatus(request: GetResourceEnrollmentStatusRequest) async throws
-    -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus
+    -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus
   {
     try await self.getResourceEnrollmentStatus(request: request, options: .init())
   }
 
   public func getResourceEnrollmentStatus(
     request: GetResourceEnrollmentStatusRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus {
+  ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getResourceEnrollmentStatus(
     name: Swift.String,
-  ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus {
+  ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
     let request = GetResourceEnrollmentStatusRequest().with {
       $0.name = name
     }
@@ -747,14 +747,14 @@ extension Clients.AuditManagerProtocol {
   }
 
   public func listResourceEnrollmentStatuses(request: ListResourceEnrollmentStatusesRequest)
-    async throws -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse
+    async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse
   {
     try await self.listResourceEnrollmentStatuses(request: request, options: .init())
   }
 
   public func listResourceEnrollmentStatuses(
     request: ListResourceEnrollmentStatusesRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse {
+  ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -769,7 +769,7 @@ extension Clients.AuditManagerProtocol {
   ) throws -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws
-        -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse in
+        -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -785,14 +785,14 @@ extension Clients.AuditManagerProtocol {
   }
 
   public func listControls(request: ListControlsRequest) async throws
-    -> GoogleCloudAuditmanagerV1.ListControlsResponse
+    -> GoogleCloudAuditManagerV1.ListControlsResponse
   {
     try await self.listControls(request: request, options: .init())
   }
 
   public func listControls(
     request: ListControlsRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse {
+  ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -806,7 +806,7 @@ extension Clients.AuditManagerProtocol {
     byItem: ListControlsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Control, Swift.Error> {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse in
+      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)

@@ -53,14 +53,14 @@ extension Clients {
 
     public func enrollResource(
       request: EnrollResourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.Enrollment {
+    ) async throws -> GoogleCloudAuditManagerV1.Enrollment {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: EnrollResourceRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudAuditmanagerV1.Enrollment
+            -> GoogleCloudAuditManagerV1.Enrollment
           in
           return try await self.inner.enrollResource(request: r, options: o)
         })
@@ -68,14 +68,14 @@ extension Clients {
 
     public func generateAuditScopeReport(
       request: GenerateAuditScopeReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport {
+    ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
         action: {
           (r: GenerateAuditScopeReportRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudAuditmanagerV1.AuditScopeReport
+            -> GoogleCloudAuditManagerV1.AuditScopeReport
           in
           return try await self.inner.generateAuditScopeReport(request: r, options: o)
         })
@@ -98,14 +98,14 @@ extension Clients {
 
     public func listAuditReports(
       request: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse {
+    ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: ListAuditReportsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse
+            -> GoogleCloudAuditManagerV1.ListAuditReportsResponse
           in
           return try await self.inner.listAuditReports(request: r, options: o)
         })
@@ -113,14 +113,14 @@ extension Clients {
 
     public func getAuditReport(
       request: GetAuditReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditReport {
+    ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: GetAuditReportRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudAuditmanagerV1.AuditReport
+            -> GoogleCloudAuditManagerV1.AuditReport
           in
           return try await self.inner.getAuditReport(request: r, options: o)
         })
@@ -128,14 +128,14 @@ extension Clients {
 
     public func getResourceEnrollmentStatus(
       request: GetResourceEnrollmentStatusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus {
+    ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: GetResourceEnrollmentStatusRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus
+            -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus
           in
           return try await self.inner.getResourceEnrollmentStatus(request: r, options: o)
         })
@@ -143,14 +143,14 @@ extension Clients {
 
     public func listResourceEnrollmentStatuses(
       request: ListResourceEnrollmentStatusesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse {
+    ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: ListResourceEnrollmentStatusesRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse
+            -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse
           in
           return try await self.inner.listResourceEnrollmentStatuses(request: r, options: o)
         })
@@ -158,14 +158,14 @@ extension Clients {
 
     public func listControls(
       request: ListControlsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse {
+    ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse {
       try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
         action: {
           (r: ListControlsRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudAuditmanagerV1.ListControlsResponse
+            -> GoogleCloudAuditManagerV1.ListControlsResponse
           in
           return try await self.inner.listControls(request: r, options: o)
         })

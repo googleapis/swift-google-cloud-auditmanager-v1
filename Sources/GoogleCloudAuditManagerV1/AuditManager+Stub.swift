@@ -28,11 +28,11 @@ extension Clients {
   protocol AuditManagerStub {
     func enrollResource(
       request: EnrollResourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.Enrollment
+    ) async throws -> GoogleCloudAuditManagerV1.Enrollment
 
     func generateAuditScopeReport(
       request: GenerateAuditScopeReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport
+    ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport
 
     func generateAuditReport(
       request: GenerateAuditReportRequest, options: GoogleCloudGax.RequestOptions
@@ -40,23 +40,23 @@ extension Clients {
 
     func listAuditReports(
       request: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse
+    ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse
 
     func getAuditReport(
       request: GetAuditReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditReport
+    ) async throws -> GoogleCloudAuditManagerV1.AuditReport
 
     func getResourceEnrollmentStatus(
       request: GetResourceEnrollmentStatusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus
+    ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus
 
     func listResourceEnrollmentStatuses(
       request: ListResourceEnrollmentStatusesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse
+    ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse
 
     func listControls(
       request: ListControlsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse
+    ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse
 
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleCloudGax.RequestOptions
@@ -93,7 +93,7 @@ extension Clients {
 
     public func enrollResource(
       request: EnrollResourceRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.Enrollment {
+    ) async throws -> GoogleCloudAuditManagerV1.Enrollment {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.scope as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.scope' is not set or is empty")
@@ -110,12 +110,12 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudAuditmanagerV1.Enrollment.self, from: data)
+        GoogleCloudAuditManagerV1.Enrollment.self, from: data)
     }
 
     public func generateAuditScopeReport(
       request: GenerateAuditScopeReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditScopeReport {
+    ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.scope as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.scope' is not set or is empty")
@@ -132,7 +132,7 @@ extension Clients {
       req.httpBody = try JSONEncoder().encode(request)
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudAuditmanagerV1.AuditScopeReport.self, from: data)
+        GoogleCloudAuditManagerV1.AuditScopeReport.self, from: data)
     }
 
     public func generateAuditReport(
@@ -159,7 +159,7 @@ extension Clients {
 
     public func listAuditReports(
       request: ListAuditReportsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListAuditReportsResponse {
+    ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -177,12 +177,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudAuditmanagerV1.ListAuditReportsResponse.self, from: data)
+        GoogleCloudAuditManagerV1.ListAuditReportsResponse.self, from: data)
     }
 
     public func getAuditReport(
       request: GetAuditReportRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.AuditReport {
+    ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -197,12 +197,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudAuditmanagerV1.AuditReport.self, from: data)
+        GoogleCloudAuditManagerV1.AuditReport.self, from: data)
     }
 
     public func getResourceEnrollmentStatus(
       request: GetResourceEnrollmentStatusRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus {
+    ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -217,12 +217,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudAuditmanagerV1.ResourceEnrollmentStatus.self, from: data)
+        GoogleCloudAuditManagerV1.ResourceEnrollmentStatus.self, from: data)
     }
 
     public func listResourceEnrollmentStatuses(
       request: ListResourceEnrollmentStatusesRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse {
+    ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -240,12 +240,12 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudAuditmanagerV1.ListResourceEnrollmentStatusesResponse.self, from: data)
+        GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse.self, from: data)
     }
 
     public func listControls(
       request: ListControlsRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudAuditmanagerV1.ListControlsResponse {
+    ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -263,7 +263,7 @@ extension Clients {
       req.setValue(Clients.clientHeader, forHTTPHeaderField: "X-Goog-Api-Client")
       let (data, _) = try await self.inner.rpc(for: req).get()
       return try GoogleCloudWkt._ProtoJSONDecoder().decode(
-        GoogleCloudAuditmanagerV1.ListControlsResponse.self, from: data)
+        GoogleCloudAuditManagerV1.ListControlsResponse.self, from: data)
     }
 
     public func listLocations(
