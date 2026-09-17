@@ -17,54 +17,30 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleWKT
 
-/// Request message for
-/// [GenerateAuditScopeReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditScopeReport].
-///
-/// [google.cloud.auditmanager.v1.AuditManager.GenerateAuditScopeReport]: <doc:AuditManagerClient/generateAuditScopeReport(request:options:)>
-public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._AnyPackable,
+/// Timing and frequency parameters for recurring audit runs.
+public struct ScheduleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  /// Required. Project or folder that the audit scope report is generated for,
-  /// in one of the following formats:
-  ///
-  /// * `projects/{project}/locations/{location}`
-  /// * `folders/{folder}/locations/{location}`
-  /// * `organizations/{organization}/locations/{location}`
-  public var scope: Swift.String = Swift.String()
+  /// Required. Date and time when the first audit run is triggered.
+  /// Subsequent runs are based on this time and the chosen frequency.
+  public var startTime: GoogleWKT.Timestamp? = nil
 
-  /// Optional. Deprecated. The standard (industry or regulatory requirements)
-  /// that the audit scope report is run against.
-  ///
-  /// Use the `compliance_framework` field instead.
-  @available(*, deprecated)
-  public var complianceStandard: Swift.String = Swift.String()
+  /// Optional. Date that the schedule stops.
+  /// If not specified, the schedule runs indefinitely.
+  public var endTime: GoogleWKT.Timestamp? = nil
 
-  /// Required. Format for the audit scope report.
-  public var reportFormat: GenerateAuditScopeReportRequest.AuditScopeReportFormat =
-    GenerateAuditScopeReportRequest.AuditScopeReportFormat()
+  /// Required. Frequency of audit runs.
+  public var frequency: ScheduleConfig.Frequency = ScheduleConfig.Frequency()
 
-  /// Required. Framework (set of controls) that the audit scope report is
-  /// generated against. For example, `NIST_800_53`.
-  public var complianceFramework: Swift.String = Swift.String()
-
-  /// Optional. If `true`, only validates the request and does not generate the
-  /// audit scope report. This executes standard request validation (such as
-  /// schema, framework existence, scope, and IAM checks) and skips the apply
-  /// phase.
-  ///
-  /// Use this field for the following purposes:
-  /// * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
-  ///   dry-run mutations (e.g., `terraform plan`) without creating real
-  ///   resources or incurring costs.
-  /// * **User Interface Validation**: Enable real-time form and permission
-  ///   validation in custom UIs before submitting requests.
-  /// * **CI/CD & Automation**: Test your scripts, permissions, and parameters
-  ///   safely without consuming resource quotas.
-  public var validateOnly: Swift.Bool = Swift.Bool()
+  /// Optional. Time zone for the audit schedule in IANA format (for example,
+  /// `America/New_York`). The time zone is used to interpret the `start_time`
+  /// and the `end_time`, and to calculate subsequent run dates.
+  /// If not specified, the time zone default is UTC.
+  public var timeZone: Swift.String = Swift.String()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
-  /// Initialize a new instance of `GenerateAuditScopeReportRequest`.
+  /// Initialize a new instance of `ScheduleConfig`.
   public init() {}
 
   /// Use `config` to return a new instance of this object, with some fields updated.
@@ -72,7 +48,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
   /// Commonly used to initialize the value, for example:
   ///
   /// ```
-  /// let value = GenerateAuditScopeReportRequest().with { $0.scope = ... }
+  /// let value = ScheduleConfig().with { $0.startTime = ... }
   /// ```
   public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
     var copy = self
@@ -86,39 +62,29 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     init(stringValue: Swift.String) { self.stringValue = stringValue }
     init?(intValue: Swift.Int) { nil }
 
-    static let scope = CodingKeys(stringValue: "scope")
-    static let complianceStandard = CodingKeys(stringValue: "complianceStandard")
-    static let reportFormat = CodingKeys(stringValue: "reportFormat")
-    static let complianceFramework = CodingKeys(stringValue: "complianceFramework")
-    static let validateOnly = CodingKeys(stringValue: "validateOnly")
+    static let startTime = CodingKeys(stringValue: "startTime")
+    static let endTime = CodingKeys(stringValue: "endTime")
+    static let frequency = CodingKeys(stringValue: "frequency")
+    static let timeZone = CodingKeys(stringValue: "timeZone")
 
     static let _knownKeys: Set<Swift.String> = [
-      "scope",
-      "complianceStandard",
-      "reportFormat",
-      "complianceFramework",
-      "validateOnly",
+      "startTime",
+      "endTime",
+      "frequency",
+      "timeZone",
     ]
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .scope) {
-      self.scope = value
-    }
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceStandard) {
-      self.complianceStandard = value
-    }
-    if let value = try container.decodeIfPresent(
-      GenerateAuditScopeReportRequest.AuditScopeReportFormat.self, forKey: .reportFormat)
+    self.startTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleWKT.Timestamp.self, forKey: .endTime)
+    if let value = try container.decodeIfPresent(ScheduleConfig.Frequency.self, forKey: .frequency)
     {
-      self.reportFormat = value
+      self.frequency = value
     }
-    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .complianceFramework) {
-      self.complianceFramework = value
-    }
-    if let value = try container.decodeIfPresent(Swift.Bool.self, forKey: .validateOnly) {
-      self.validateOnly = value
+    if let value = try container.decodeIfPresent(Swift.String.self, forKey: .timeZone) {
+      self.timeZone = value
     }
     for key in container.allKeys where !CodingKeys._knownKeys.contains(key.stringValue) {
       self._unknownFields.json[key.stringValue] = try container.decode(
@@ -128,22 +94,30 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.complianceStandard, forKey: .complianceStandard)
-    try container.encode(self.reportFormat, forKey: .reportFormat)
-    try container.encode(self.complianceFramework, forKey: .complianceFramework)
-    try container.encode(self.validateOnly, forKey: .validateOnly)
+    try container.encodeIfPresent(self.startTime, forKey: .startTime)
+    try container.encodeIfPresent(self.endTime, forKey: .endTime)
+    try container.encode(self.frequency, forKey: .frequency)
+    try container.encode(self.timeZone, forKey: .timeZone)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
   }
 
-  /// Format for the audit scope report.
-  public enum AuditScopeReportFormat: Codable, Equatable, Sendable {
+  /// Frequency of audit runs.
+  public enum Frequency: Codable, Equatable, Sendable {
     /// Default value. This value is unused.
     case unspecified
-    /// Open Document format.
-    case odf
+    /// The audit runs every day.
+    case daily
+    /// The audit runs weekly on the same day of the week as `start_time`.
+    case weekly
+    /// The audit runs monthly on the same day of the month as `start_time`.
+    case monthly
+    /// The audit runs quarterly (every 3 months) on the same
+    /// day of the month as `start_time`.
+    case quarterly
+    /// The audit runs annually on the same month and day as `start_time`.
+    case annually
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -167,7 +141,11 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     public var intValue: Int? {
       switch self {
       case .unspecified: return 0
-      case .odf: return 1
+      case .daily: return 1
+      case .weekly: return 2
+      case .monthly: return 3
+      case .quarterly: return 4
+      case .annually: return 5
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -178,8 +156,12 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
     public var stringValue: Swift.String? {
       switch self {
-      case .unspecified: return "AUDIT_SCOPE_REPORT_FORMAT_UNSPECIFIED"
-      case .odf: return "AUDIT_SCOPE_REPORT_FORMAT_ODF"
+      case .unspecified: return "FREQUENCY_UNSPECIFIED"
+      case .daily: return "DAILY"
+      case .weekly: return "WEEKLY"
+      case .monthly: return "MONTHLY"
+      case .quarterly: return "QUARTERLY"
+      case .annually: return "ANNUALLY"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -187,22 +169,30 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
 
     /// Initialize from a string value.
     ///
-    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:AuditScopeReportFormat/unknownStringValue(_:)).
+    /// If the value is unknown, this initializes to [`unknownStringValue`](doc:Frequency/unknownStringValue(_:)).
     public init(stringValue: Swift.String) {
       switch stringValue {
-      case "AUDIT_SCOPE_REPORT_FORMAT_UNSPECIFIED": self = .unspecified
-      case "AUDIT_SCOPE_REPORT_FORMAT_ODF": self = .odf
+      case "FREQUENCY_UNSPECIFIED": self = .unspecified
+      case "DAILY": self = .daily
+      case "WEEKLY": self = .weekly
+      case "MONTHLY": self = .monthly
+      case "QUARTERLY": self = .quarterly
+      case "ANNUALLY": self = .annually
       default: self = .unknownStringValue(stringValue)
       }
     }
 
     /// Initialize from an integer value.
     ///
-    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:AuditScopeReportFormat/unknownIntValue(_:)).
+    /// If the value is unknown, this initializes to [`unknownIntValue`](doc:Frequency/unknownIntValue(_:)).
     public init(intValue: Int) {
       switch intValue {
       case 0: self = .unspecified
-      case 1: self = .odf
+      case 1: self = .daily
+      case 2: self = .weekly
+      case 3: self = .monthly
+      case 4: self = .quarterly
+      case 5: self = .annually
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -228,8 +218,12 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode("AUDIT_SCOPE_REPORT_FORMAT_UNSPECIFIED")
-      case .odf: return try container.encode("AUDIT_SCOPE_REPORT_FORMAT_ODF")
+      case .unspecified: return try container.encode("FREQUENCY_UNSPECIFIED")
+      case .daily: return try container.encode("DAILY")
+      case .weekly: return try container.encode("WEEKLY")
+      case .monthly: return try container.encode("MONTHLY")
+      case .quarterly: return try container.encode("QUARTERLY")
+      case .annually: return try container.encode("ANNUALLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -237,7 +231,7 @@ public struct GenerateAuditScopeReportRequest: Codable, Equatable, GoogleWKT._An
   }
 
   public static var _anyTypeUrl: Swift.String {
-    return "type.googleapis.com/google.cloud.auditmanager.v1.GenerateAuditScopeReportRequest"
+    return "type.googleapis.com/google.cloud.auditmanager.v1.ScheduleConfig"
   }
   public init(fromAny any: GoogleWKT.`Any`) throws {
     self = try GoogleWKT._slowAnyDeserialize(Self.self, from: any)

@@ -23,17 +23,16 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
-func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudAuditManagerV1.AuditManagerClient()
-  let items = try client.listAuditSchedules(
-    byItem: ListAuditSchedulesRequest()
+func sample(
+  client: AuditManagerClient, projectId: String, locationId: String, auditScheduleId: String
+) async throws {
+  let response = try await client.getAuditSchedule(
+    request: GetAuditScheduleRequest()
       .with {
-        $0.parent = "projects/\(projectId)/locations/\(locationId)"
+        $0.name = "projects/\(projectId)/locations/\(locationId)/auditSchedules/\(auditScheduleId)"
       }
   )
-  for try await item in items {
-    print("  \(item)")
-  }
+  print("Success: \(response)")
 }
 // snippet.hide
 
@@ -41,7 +40,10 @@ func sample(projectId: String, locationId: String, ) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      try await sample(projectId: "[placeholder]", locationId: "[placeholder]", )
+      let client = try GoogleCloudAuditManagerV1.AuditManagerClient()
+      try await sample(
+        client: client, projectId: "[placeholder]", locationId: "[placeholder]",
+        auditScheduleId: "[placeholder]")
     } catch {
       print("Error: \(error)")
     }

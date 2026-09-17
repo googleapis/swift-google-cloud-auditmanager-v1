@@ -23,8 +23,7 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 
-func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudAuditManagerV1.AuditManagerClient()
+func sample(client: AuditManagerClient, projectId: String, locationId: String) async throws {
   let items = try client.listAuditSchedules(
     byItem: ListAuditSchedulesRequest()
       .with {
@@ -41,7 +40,8 @@ func sample(projectId: String, locationId: String, ) async throws {
 struct SnippetRunner {
   static func main() async throws {
     do {
-      try await sample(projectId: "[placeholder]", locationId: "[placeholder]", )
+      let client = try GoogleCloudAuditManagerV1.AuditManagerClient()
+      try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")
     }
